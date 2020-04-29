@@ -1,0 +1,80 @@
+2020-04-29T14:36:59.633, i=0
+2020-04-29T14:38:01.360, i=100
+2020-04-29T14:38:03.261, i=200
+2020-04-29T14:38:05.128, i=300
+2020-04-29T14:38:06.974, i=400
+2020-04-29T14:38:08.820, i=500
+2020-04-29T14:38:10.653, i=600
+2020-04-29T14:38:12.489, i=700
+2020-04-29T14:38:14.294, i=800
+2020-04-29T14:38:16.116, i=900
+2020-04-29T14:38:17.979, i=1000
+2020-04-29T14:38:19.787, i=1100
+2020-04-29T14:38:21.602, i=1200
+2020-04-29T14:38:23.421, i=1300
+2020-04-29T14:38:25.252, i=1400
+2020-04-29T14:38:27.041, i=1500
+2020-04-29T14:38:28.841, i=1600
+2020-04-29T14:38:30.784, i=1700
+2020-04-29T14:38:32.640, i=1800
+2020-04-29T14:38:34.489, i=1900
+2020-04-29T14:38:36.340, i=2000
+2020-04-29T14:38:38.077, i=2100
+2020-04-29T14:38:39.886, i=2200
+2020-04-29T14:38:41.667, i=2300
+2020-04-29T14:38:43.444, i=2400
+2020-04-29T14:38:45.261, i=2500
+2020-04-29T14:38:46.984, i=2600
+2020-04-29T14:38:48.826, i=2700
+2020-04-29T14:38:50.722, i=2800
+2020-04-29T14:38:52.479, i=2900
+2020-04-29T14:38:54.285, i=3000
+2020-04-29T14:38:56.072, i=3100
+2020-04-29T14:38:57.863, i=3200
+2020-04-29T14:38:59.757, i=3300
+2020-04-29T14:39:01.611, i=3400
+2020-04-29T14:39:03.371, i=3500
+2020-04-29T14:39:05.239, i=3600
+2020-04-29T14:39:07.013, i=3700
+2020-04-29T14:39:08.840, i=3800
+2020-04-29T14:39:10.693, i=3900
+2020-04-29T14:39:12.426, i=4000
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: I/O exception (java.net.SocketException) caught when processing request to {}->http://jboss-server.local:80: Too many open files
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: Retrying request to {}->http://jboss-server.local:80
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: I/O exception (java.net.SocketException) caught when processing request to {}->http://jboss-server.local:80: Too many open files
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: Retrying request to {}->http://jboss-server.local:80
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: I/O exception (java.net.SocketException) caught when processing request to {}->http://jboss-server.local:80: Too many open files
+Apr 29, 2020 2:39:13 PM org.apache.http.impl.execchain.RetryExec execute
+INFO: Retrying request to {}->http://jboss-server.local:80
+Exception in thread "main" java.net.SocketException: Too many open files
+	at java.net.Socket.createImpl(Socket.java:477)
+	at java.net.Socket.getImpl(Socket.java:537)
+	at java.net.Socket.setSoTimeout(Socket.java:1158)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:120)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:221)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:165)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:140)
+	at echoview.sample.ConsoleAppMain.execute(ConsoleAppMain.java:83)
+	at echoview.sample.ConsoleAppMain.main(ConsoleAppMain.java:39)
+Heap
+ PSYoungGen      total 1529344K, used 813276K [0x0000000755580000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 1311232K, 62% used [0x0000000755580000,0x0000000786fb7150,0x00000007a5600000)
+  from space 218112K, 0% used [0x00000007b2b00000,0x00000007b2b00000,0x00000007c0000000)
+  to   space 218112K, 0% used [0x00000007a5600000,0x00000007a5600000,0x00000007b2b00000)
+ ParOldGen       total 3495424K, used 0K [0x0000000680000000, 0x0000000755580000, 0x0000000755580000)
+  object space 3495424K, 0% used [0x0000000680000000,0x0000000680000000,0x0000000755580000)
+ Metaspace       used 10693K, capacity 10974K, committed 11264K, reserved 1058816K
+  class space    used 1133K, capacity 1259K, committed 1280K, reserved 1048576K

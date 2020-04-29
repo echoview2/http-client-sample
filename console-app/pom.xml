@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>echoview</groupId>
+  <artifactId>http-client-console-app</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>leak-sample</name>
+  <!-- FIXME change it to the project's website -->
+  <!-- <url>http://www.example.com</url> -->
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- https://stackoverflow.com/questions/38882080/specifying-java-version-in-maven-differences-between-properties-and-compiler-p -->
+    <!-- This is only effective for spring-boot -->
+    <!-- <java.version>1.8</java.version> -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <org.springframework.version>5.2.3.RELEASE</org.springframework.version>
+    <wildfly.maven.plugin.version>2.0.2.Final</wildfly.maven.plugin.version>
+
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+    <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+    <maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
+    <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+
+    <ojdbc.version>12.2.0.1</ojdbc.version>
+    <commons-dbcp2.version>2.6.0</commons-dbcp2.version>
+    <javax.validation.version>2.0.1.Final</javax.validation.version>
+    <spotbugs.version>3.1.11</spotbugs.version>
+
+    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+
+    <junit.version>4.12</junit.version>
+
+    <mockito-core.version>3.0.0</mockito-core.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.12</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <!--
+          <source>1.8</source>
+          <target>1.8</target>
+          <testSource>1.8</testSource>
+          <testTarget>1.8</testTarget>
+          -->
+          <compilerArgument>-Xlint:deprecation</compilerArgument>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven-war-plugin.version}</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-site-plugin</artifactId>
+      	<version>${maven-site-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-project-info-reports-plugin</artifactId>
+      	<version>${maven-project-info-reports-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-report-plugin</artifactId>
+	<version>${maven-surefire-report-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-report-plugin</artifactId>
+	<version>${maven-surefire-report-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-javadoc-plugin</artifactId>
+	<version>3.1.0</version>
+      </plugin>
+
+      <plugin>
+	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-checkstyle-plugin</artifactId>
+	<version>3.1.0</version>
+	<configuration>
+	  <configLocation>google_checks.xml</configLocation>
+	</configuration>
+	<!--
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+	-->
+      </plugin>
+
+      <plugin>
+	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jxr-plugin -->
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jxr-plugin</artifactId>
+	<version>3.0.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.12.0</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>1.8</targetJdk>
+	  <!--
+          <excludes>
+            <exclude>**/*Bean.java</exclude>
+            <exclude>**/generated/*.java</exclude>
+          </excludes>
+	  -->
+	  <!--
+          <excludeRoots>
+            <excludeRoot>target/generated-sources/stubs</excludeRoot>
+          </excludeRoots>
+	  -->
+        </configuration>
+      </plugin>      
+      
+    </plugins>
+  </reporting>
+</project>
